@@ -37,6 +37,28 @@
             letter-spacing: 0.3px;
         }
 
+        /* LINGUA MOBILE (In alto a sinistra sopra il titolo) */
+        .mobile-lang-container {
+            display: none;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            z-index: 1100;
+        }
+
+        .lang-switch {
+            background: rgba(43, 38, 33, 0.7);
+            border: 1px solid var(--gold-color);
+            color: #fff;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1px;
+            backdrop-filter: blur(4px);
+        }
+
         /* HEADER DESKTOP */
         header {
             position: relative;
@@ -73,16 +95,24 @@
             background-color: var(--accent-color);
             display: flex;
             justify-content: center;
+            align-items: center;
             flex-wrap: wrap;
             gap: 2.5rem;
-            padding: 1.2rem;
+            padding: 1.2rem 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
 
-        nav a {
+        nav .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav a, nav .lang-switch {
             color: #fff;
             text-decoration: none;
             font-family: 'Montserrat', sans-serif;
@@ -93,16 +123,26 @@
             transition: color 0.3s ease;
         }
 
-        nav a:hover {
+        nav a:hover, nav .lang-switch:hover {
             color: var(--gold-color);
+        }
+
+        /* SELETTORE LINGUA PC NELLA NAVBAR */
+        .desktop-lang {
+            background: transparent;
+            border: 1px solid var(--gold-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 2rem;
         }
 
         /* HAMBURGER MENU MOBILE (Nascosto su desktop) */
         .hamburger-btn {
             display: none;
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             z-index: 1100;
             background: var(--accent-color);
             border: 2px solid var(--gold-color);
@@ -536,6 +576,9 @@
             .mobile-drawer {
                 display: block;
             }
+            .mobile-lang-container {
+                display: block;
+            }
 
             header {
                 padding: 4.5rem 1rem 2.5rem 1rem;
@@ -596,34 +639,42 @@
 </head>
 <body>
 
+    <!-- SELETTORE LINGUA MOBILE (In alto a sinistra sopra il titolo) -->
+    <div class="mobile-lang-container">
+        <button class="lang-switch" id="mobileLangBtn" onclick="toggleLanguage()">EN</button>
+    </div>
+
     <!-- PULSANTE HAMBURGER E MENU LATERALE MOBILE -->
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">&#9776;</button>
     <div class="mobile-drawer" id="mobileDrawer">
-        <a href="#locale" class="mobile-link">Il Locale</a>
-        <a href="#menu" class="mobile-link">Menù</a>
-        <a href="#recensioni" class="mobile-link">Recensioni</a>
-        <a href="#contatti" class="mobile-link">Contatti</a>
+        <a href="#locale" class="mobile-link" data-key="navLocale">Il Locale</a>
+        <a href="#menu" class="mobile-link" data-key="navMenu">Menù</a>
+        <a href="#recensioni" class="mobile-link" data-key="navReviews">Recensioni</a>
+        <a href="#contatti" class="mobile-link" data-key="navContact">Contatti</a>
     </div>
 
     <header>
-        <h1>Trattoria Milanese dal 1933</h1>
-        <p>La vera tradizione milanese nel cuore della città</p>
+        <h1 data-key="headerTitle">Trattoria Milanese dal 1933</h1>
+        <p data-key="headerSubtitle">La vera tradizione milanese nel cuore della città</p>
     </header>
 
     <nav>
-        <a href="#locale">Il Locale</a>
-        <a href="#menu">Menù</a>
-        <a href="#recensioni">Recensioni</a>
-        <a href="#contatti">Contatti</a>
+        <div class="nav-links">
+            <a href="#locale" data-key="navLocale">Il Locale</a>
+            <a href="#menu" data-key="navMenu">Menù</a>
+            <a href="#recensioni" data-key="navReviews">Recensioni</a>
+            <a href="#contatti" data-key="navContact">Contatti</a>
+        </div>
+        <button class="lang-switch desktop-lang" id="desktopLangBtn" onclick="toggleLanguage()">EN</button>
     </nav>
 
     <div class="container">
         
         <!-- SEZIONE IL LOCALE -->
         <section id="locale">
-            <h2>Il Locale</h2>
+            <h2 data-key="titleLocale">Il Locale</h2>
             <div class="about-card">
-                <p class="about-text">
+                <p class="about-text" data-key="aboutText">
                     Fondata nel 1933, la <strong>Trattoria Milanese dal 1933</strong> è un'autentica istituzione meneghina in Via Santa Marta. Varcare la soglia significa immergersi in un'atmosfera d'altri tempi, fatta di arredi classici, calore familiare e una dedizione assoluta ai sapori genuini della cucina lombarda tramandata di generazione in generazione.
                 </p>
             </div>
@@ -631,11 +682,11 @@
 
         <!-- SEZIONE MENU COMPLETO -->
         <section id="menu">
-            <h2>Menù del Giorno</h2>
+            <h2 data-key="titleMenu">Menù del Giorno</h2>
 
             <!-- ANTIPASTI -->
             <div class="menu-category">
-                <h3>Antipasti</h3>
+                <h3 data-key="catAntipasti">Antipasti</h3>
                 <div class="menu-grid">
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Bresaola valtellina D.O.P.</span></div><div class="menu-item-price">€ 16</div></div>
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Antipasto "trattoria milanese"</span></div><div class="menu-item-price">€ 15</div></div>
@@ -651,7 +702,7 @@
 
             <!-- MINESTRE -->
             <div class="menu-category">
-                <h3>Minestre</h3>
+                <h3 data-key="catMinestre">Minestre</h3>
                 <div class="menu-grid">
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Brodo in tazza</span></div><div class="menu-item-price">€ 8</div></div>
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Tagliatelle fresche ai carciofi (*)</span></div><div class="menu-item-price">€ 18</div></div>
@@ -669,7 +720,7 @@
 
             <!-- PIATTI DA FARSI -->
             <div class="menu-category">
-                <h3>Piatti da Farsi</h3>
+                <h3 data-key="catPiattiFarsi">Piatti da Farsi</h3>
                 <div class="menu-grid">
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Risotto e ossobuco</span></div><div class="menu-item-price">€ 35</div></div>
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Costata di manzo pezzata valtellina</span></div><div class="menu-item-price">€ 32</div></div>
@@ -693,7 +744,7 @@
 
             <!-- PIATTI DEL GIORNO -->
             <div class="menu-category">
-                <h3>Piatti del Giorno</h3>
+                <h3 data-key="catPiattiGiorno">Piatti del Giorno</h3>
                 <div class="menu-grid">
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Fesa o punta di vitello al forno</span></div><div class="menu-item-price">€ 21</div></div>
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Roast-beef all'inglese</span></div><div class="menu-item-price">€ 28</div></div>
@@ -712,7 +763,7 @@
 
             <!-- PESCI -->
             <div class="menu-category">
-                <h3>Pesci</h3>
+                <h3 data-key="catPesci">Pesci</h3>
                 <div class="menu-grid">
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Salmone ai ferri o al vapore</span></div><div class="menu-item-price">€ 28</div></div>
                 </div>
@@ -720,7 +771,7 @@
 
             <!-- LEGUMI E VERDURE -->
             <div class="menu-category">
-                <h3>Legumi e Verdure</h3>
+                <h3 data-key="catVerdure">Legumi e Verdure</h3>
                 <div class="menu-grid">
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Giardiniera della casa</span></div><div class="menu-item-price">€ 12</div></div>
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Carciofi freschi al tegame (*)</span></div><div class="menu-item-price">€ 12</div></div>
@@ -738,7 +789,7 @@
 
             <!-- FORMAGGI -->
             <div class="menu-category">
-                <h3>Formaggi</h3>
+                <h3 data-key="catFormaggi">Formaggi</h3>
                 <div class="menu-grid">
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Crescenza e mostarda di castagne</span></div><div class="menu-item-price">€ 9</div></div>
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Piatto misto di formaggi</span></div><div class="menu-item-price">€ 15</div></div>
@@ -747,7 +798,7 @@
 
             <!-- FRUTTA FRESCA -->
             <div class="menu-category">
-                <h3>Frutta Fresca</h3>
+                <h3 data-key="catFrutta">Frutta Fresca</h3>
                 <div class="menu-grid">
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Piatto di frutta mista preparata</span></div><div class="menu-item-price">€ 9</div></div>
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Mango o papaya freschi al piatto</span></div><div class="menu-item-price">€ 10</div></div>
@@ -757,7 +808,7 @@
 
             <!-- DOLCI E GELATI -->
             <div class="menu-category">
-                <h3>Dolci e Gelati</h3>
+                <h3 data-key="catDolci">Dolci e Gelati</h3>
                 <div class="menu-grid">
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Zabajone caldo con panettone</span></div><div class="menu-item-price">€ 12</div></div>
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Tiramisù della casa</span></div><div class="menu-item-price">€ 9</div></div>
@@ -771,7 +822,7 @@
 
             <!-- BIRRA MENABREA E PORETTI -->
             <div class="menu-category">
-                <h3>Birra Menabrea e Poretti</h3>
+                <h3 data-key="catBirra">Birra Menabrea e Poretti</h3>
                 <div class="menu-grid">
                     <div class="menu-item"><div class="menu-item-info"><span class="name">33 cl</span></div><div class="menu-item-price">€ 7</div></div>
                     <div class="menu-item"><div class="menu-item-info"><span class="name">66 cl</span></div><div class="menu-item-price">€ 14</div></div>
@@ -780,7 +831,7 @@
 
             <!-- BEVANDE MINERALI -->
             <div class="menu-category">
-                <h3>Bevande Minerali</h3>
+                <h3 data-key="catBevande">Bevande Minerali</h3>
                 <div class="menu-grid">
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Bibite in bottiglia 33cl</span></div><div class="menu-item-price">€ 7</div></div>
                     <div class="menu-item"><div class="menu-item-info"><span class="name">San Pellegrino 100cl</span></div><div class="menu-item-price">€ 6</div></div>
@@ -790,7 +841,7 @@
 
             <!-- VINI AL 1/4 O AL CALICE -->
             <div class="menu-category">
-                <h3>Vini al 1/4 o al Calice</h3>
+                <h3 data-key="catViniCalice">Vini al 1/4 o al Calice</h3>
                 <div class="menu-grid">
                     <div class="menu-item"><div class="menu-item-info"><span class="name">D.O.C.G. Prosecco Superiore al calice</span></div><div class="menu-item-price">€ 9</div></div>
                     <div class="menu-item"><div class="menu-item-info"><span class="name">D.O.C. Piemonte Cortese</span></div><div class="menu-item-price">€ 8</div></div>
@@ -801,13 +852,13 @@
 
                 <!-- TASTO CARTA VINI COMPLETA -->
                 <div class="wine-btn-container">
-                    <button class="btn-wine" id="openWineModal">Sfoglia carta vini completa</button>
+                    <button class="btn-wine" id="openWineModal" data-key="btnWineModal">Sfoglia carta vini completa</button>
                 </div>
             </div>
 
             <!-- CAFFÈ -->
             <div class="menu-category">
-                <h3>Caffè</h3>
+                <h3 data-key="catCaffe">Caffè</h3>
                 <div class="menu-grid">
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Caffè espresso, decaffeinato</span></div><div class="menu-item-price">€ 3</div></div>
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Caffè macchiato</span></div><div class="menu-item-price">€ 4</div></div>
@@ -816,26 +867,26 @@
 
             <!-- NOTE E PROPOSTE -->
             <div class="notes-box">
-                <h4>Note Importanti</h4>
+                <h4 data-key="notesTitle">Note Importanti</h4>
                 <ul>
-                    <li><strong>Pranzo turistico</strong> (vino e bevande escluse): 1 primo del giorno, 1 secondo del giorno e 1 dessert del giorno a <strong>€ 48</strong> a persona.</li>
-                    <li>Alcuni prodotti (fuori stagione) sono preparati internamente e crioconservati (*).</li>
-                    <li>Per problemi di allergie o intolleranze alimentari rivolgersi al personale di sala.</li>
-                    <li>La razione ridotta verrà calcolata al 70%.</li>
+                    <li data-key="note1"><strong>Pranzo turistico</strong> (vino e bevande escluse): 1 primo del giorno, 1 secondo del giorno e 1 dessert del giorno a <strong>€ 48</strong> a persona.</li>
+                    <li data-key="note2">Alcuni prodotti (fuori stagione) sono preparati internamente e crioconservati (*).</li>
+                    <li data-key="note3">Per problemi di allergie o intolleranze alimentari rivolgersi al personale di sala.</li>
+                    <li data-key="note4">La razione ridotta verrà calcolata al 70%.</li>
                 </ul>
             </div>
         </section>
 
         <!-- SEZIONE RECENSIONI -->
         <section id="recensioni">
-            <h2>Dicono di Noi</h2>
+            <h2 data-key="titleReviews">Dicono di Noi</h2>
             <div class="reviews-container">
                 <div class="review-card">
-                    <p>"Ottima cucina milanese: ci sono stata più volte e non ha mai deluso. Il menu offre un’ampia scelta di piatti, sia della tradizione milanese sia di altre proposte. Servizio eccellente, attento e professionale. Una menzione speciale anche ai dolci, fatti in casa e davvero deliziosi (tiramisú top). Assolutamente consigliato!"</p>
+                    <p data-key="review1">"Ottima cucina milanese: ci sono stata più volte e non ha mai deluso. Il menu offre un’ampia scelta di piatti, sia della tradizione milanese sia di altre proposte. Servizio eccellente, attento e professionale. Una menzione speciale anche ai dolci, fatti in casa e davvero deliziosi (tiramisú top). Assolutamente consigliato!"</p>
                     <span>— Recensioni Google</span>
                 </div>
                 <div class="review-card">
-                    <p>"Esperienza italiana molto autentica, ben ospitata con un ottimo team di servizio che aiuta nella selezione dei cibi e assicura che i clienti siano soddisfatti dell'esperienza. Il cibo è straordinario, semplice e ben fatto. Non perdere il vitello con crema di tonno, tortellini con spinaci e il risotto osso-buco."</p>
+                    <p data-key="review2">"Esperienza italiana molto autentica, ben ospitata con un ottimo team di servizio che aiuta nella selezione dei cibi e assicura che i clienti siano soddisfatti dell'esperienza. Il cibo è straordinario, semplice e ben fatto. Non perdere il vitello con crema di tonno, tortellini con spinaci e il risotto osso-buco."</p>
                     <span>— Tripadvisor</span>
                 </div>
             </div>
@@ -844,11 +895,11 @@
         <!-- SEZIONE CONTATTI -->
         <section id="contatti">
             <div class="info-box">
-                <h2>Informazioni e Prenotazioni</h2>
+                <h2 data-key="titleContact">Informazioni e Prenotazioni</h2>
                 <div class="info-details">
-                    <p><strong>Indirizzo:</strong> <a href="https://maps.google.com/?q=Via+Santa+Marta+11+20123+Milano+MI" target="_blank" style="color: #d1c7b7; text-decoration: underline;">Via Santa Marta, 11, 20123 Milano MI</a></p>
-                    <p><strong>Telefono:</strong> <a href="tel:0286451991" style="color: #f7f5f0; text-decoration: none;">02 8645 1991</a> (consigliata prenotazione telefonica)</p>
-                    <p><strong>Orari:</strong> Lunedì - Sabato: 12–14:30, 19–22:30<br>Domenica: Chiuso</p>
+                    <p><strong data-key="lblAddress">Indirizzo:</strong> <a href="https://maps.google.com/?q=Via+Santa+Marta+11+20123+Milano+MI" target="_blank" style="color: #d1c7b7; text-decoration: underline;">Via Santa Marta, 11, 20123 Milano MI</a></p>
+                    <p><strong data-key="lblPhone">Telefono:</strong> <a href="tel:0286451991" style="color: #f7f5f0; text-decoration: none;">02 8645 1991</a> (<span data-key="lblBooking">consigliata prenotazione telefonica</span>)</p>
+                    <p><strong data-key="lblHours">Orari:</strong> <span data-key="hoursVal">Lunedì - Sabato: 12–14:30, 19–22:30<br>Domenica: Chiuso</span></p>
                 </div>
                 <!-- Mini Mappa di Google Maps -->
                 <div class="map-container">
@@ -863,9 +914,9 @@
     <div id="wineModal" class="modal">
         <div class="modal-content">
             <span class="close" id="closeWineModal">&times;</span>
-            <h3>Carta vini</h3>
+            <h3 data-key="modalWineTitle">Carta vini</h3>
 
-            <div class="wine-section-title">Selezioni Principali (ml 750)</div>
+            <div class="wine-section-title" data-key="wineSec1">Selezioni Principali (ml 750)</div>
             <div class="wine-grid">
                 <div class="wine-item"><span class="wine-name">D.O.C. Oltrepo Pavese Pinot Nero "TERRAZZE ALTE" Ten. Mazzolino 2023</span><span class="wine-details">€ 36.00</span></div>
                 <div class="wine-item"><span class="wine-name">D.O.C.G. Barolo "della Tradizione" Tenimenti Ca' Bianca 2020</span><span class="wine-details">€ 43.00</span></div>
@@ -888,7 +939,7 @@
                 <div class="wine-item"><span class="wine-name">I.G.T. SICILIA GRILLO "Solandia" bianco 2024</span><span class="wine-details">€ 16.00</span></div>
             </div>
 
-            <div class="wine-section-title">Grandi Annate e Riserve</div>
+            <div class="wine-section-title" data-key="wineSec2">Grandi Annate e Riserve</div>
             <div class="wine-grid">
                 <div class="wine-item"><span class="wine-name">D.O.C.G. 1999 ANNATA ECCELLENTE - Riserva Grandi Annate Avignonesi - Vino Nobile di Montepulciano (ml. 750)</span><span class="wine-details">€ 129.00</span></div>
             </div>
@@ -898,7 +949,7 @@
                 <div class="wine-item"><span class="wine-name">"Vigna La Selvanella" Melini 2020</span><span class="wine-details">€ 41.00</span></div>
             </div>
 
-            <div class="wine-section-title">Barbaresco e Brunello (ml. 750)</div>
+            <div class="wine-section-title" data-key="wineSec3">Barbaresco e Brunello (ml. 750)</div>
             <div class="wine-grid">
                 <div class="wine-item"><span class="wine-name">D.O.C.G. Barbaresco: Cascina Bruciata "Rio Sordo" 2021</span><span class="wine-details">€ 67.00</span></div>
                 <div class="wine-item"><span class="wine-name">D.O.C.G. Barbaresco: Marchesi di Barolo "Serragrilli" 2021</span><span class="wine-details">€ 61.00</span></div>
@@ -909,7 +960,7 @@
                 <div class="wine-item"><span class="wine-name">D.O.C.G. Barbera d'Asti: Nizza Ceppi Vecchi Cantina di Nizza 2022</span><span class="wine-details">€ 38.00</span></div>
             </div>
 
-            <div class="wine-section-title">Valtellina Superiore e Barolo (ml. 750)</div>
+            <div class="wine-section-title" data-key="wineSec4">Valtellina Superiore e Barolo (ml. 750)</div>
             <div class="wine-grid">
                 <div class="wine-item"><span class="wine-name">Nino Negri "Castel Chiuro" 2015</span><span class="wine-details">€ 98.00</span></div>
                 <div class="wine-item"><span class="wine-name">Nino Negri "Cinquestelle" Sfursat 2020</span><span class="wine-details">€ 116.00</span></div>
@@ -923,7 +974,7 @@
                 <div class="wine-item"><span class="wine-name">D.O.C.G. Barolo: "Tradizione" Marchesi di Barolo 2019</span><span class="wine-details">€ 65.00</span></div>
             </div>
 
-            <div class="wine-section-title">Ulteriori Etichette e Bollicine (ml. 750)</div>
+            <div class="wine-section-title" data-key="wineSec5">Ulteriori Etichette e Bollicine (ml. 750)</div>
             <div class="wine-grid">
                 <div class="wine-item"><span class="wine-name">I.G.T. Primitivo del Salento "Piluna" Castello Monaci 2024</span><span class="wine-details">€ 19.00</span></div>
                 <div class="wine-item"><span class="wine-name">D.O.C. Alto Adige Pinot Nero "ROLHUT" Peter Zemmer 2025</span><span class="wine-details">€ 28.00</span></div>
@@ -945,7 +996,7 @@
                 <div class="wine-item"><span class="wine-name">D.O.C.G. Franciacorta Brut degor. 2024</span><span class="wine-details">€ 63.00</span></div>
             </div>
 
-            <div class="wine-section-title">Le Mezze Bottiglie (ml. 375)</div>
+            <div class="wine-section-title" data-key="wineSec6">Le Mezze Bottiglie (ml. 375)</div>
             <div class="wine-grid">
                 <div class="wine-item"><span class="wine-name">I.G.T. Brancaia "Il Blu" 2021</span><span class="wine-details">€ 56.00</span></div>
                 <div class="wine-item"><span class="wine-name">D.O.C.G. Brunello di Montalcino 2020</span><span class="wine-details">€ 38.00</span></div>
@@ -959,7 +1010,7 @@
                 <div class="wine-item"><span class="wine-name">D.O.C.G. Car. del Sulcis Rocca Rubia 2020</span><span class="wine-details">€ 22.00</span></div>
             </div>
 
-            <div class="wine-section-title">Vini Bianchi (Mezze Bottiglie)</div>
+            <div class="wine-section-title" data-key="wineSec7">Vini Bianchi (Mezze Bottiglie)</div>
             <div class="wine-grid">
                 <div class="wine-item"><span class="wine-name">D.O.C. Langhe Bric Amel Mar. di Barolo 2025</span><span class="wine-details">€ 16.00</span></div>
                 <div class="wine-item"><span class="wine-name">D.O.C.G. Gavi Mar. di Barolo 2025</span><span class="wine-details">€ 18.00</span></div>
@@ -969,10 +1020,129 @@
     </div>
 
     <footer>
-        <p>&copy; 1933-2026 Trattoria Milanese dal 1933 — Tutti i diritti riservati.</p>
+        <p>&copy; 1933-2026 Trattoria Milanese dal 1933 — <span data-key="footerRights">Tutti i diritti riservati.</span></p>
     </footer>
 
     <script>
+        // Dizionario traduzioni IT / EN
+        const translations = {
+            it: {
+                navLocale: "Il Locale",
+                navMenu: "Menù",
+                navReviews: "Recensioni",
+                navContact: "Contatti",
+                headerTitle: "Trattoria Milanese dal 1933",
+                headerSubtitle: "La vera tradizione milanese nel cuore della città",
+                titleLocale: "Il Locale",
+                aboutText: 'Fondata nel 1933, la <strong>Trattoria Milanese dal 1933</strong> è un\'autentica istituzione meneghina in Via Santa Marta. Varcare la soglia significa immergersi in un\'atmosfera d\'altri tempi, fatta di arredi classici, calore familiare e una dedizione assoluta ai sapori genuini della cucina lombarda tramandata di generazione in generazione.',
+                titleMenu: "Menù del Giorno",
+                catAntipasti: "Antipasti",
+                catMinestre: "Minestre",
+                catPiattiFarsi: "Piatti da Farsi",
+                catPiattiGiorno: "Piatti del Giorno",
+                catPesci: "Pesci",
+                catVerdure: "Legumi e Verdure",
+                catFormaggi: "Formaggi",
+                catFrutta: "Frutta Fresca",
+                catDolci: "Dolci e Gelati",
+                catBirra: "Birra Menabrea e Poretti",
+                catBevande: "Bevande Minerali",
+                catViniCalice: "Vini al 1/4 o al Calice",
+                btnWineModal: "Sfoglia carta vini completa",
+                catCaffe: "Caffè",
+                notesTitle: "Note Importanti",
+                note1: "<strong>Pranzo turistico</strong> (vino e bevande escluse): 1 primo del giorno, 1 secondo del giorno e 1 dessert del giorno a <strong>€ 48</strong> a persona.",
+                note2: "Alcuni prodotti (fuori stagione) sono preparati internamente e crioconservati (*).",
+                note3: "Per problemi di allergie o intolleranze alimentari rivolgersi al personale di sala.",
+                note4: "La razione ridotta verrà calcolata al 70%.",
+                titleReviews: "Dicono di Noi",
+                review1: "\"Ottima cucina milanese: ci sono stata più volte e non ha mai deluso. Il menu offre un’ampia scelta di piatti, sia della tradizione milanese sia di altre proposte. Servizio eccellente, attento e professionale. Una menzione speciale anche ai dolci, fatti in casa e davvero deliziosi (tiramisú top). Assolutamente consigliato!\"",
+                review2: "\"Esperienza italiana molto autentica, ben ospitata con un ottimo team di servizio che aiuta nella selezione dei cibi e assicura che i clienti siano soddisfatti dell'esperienza. Il cibo è straordinario, semplice e ben fatto. Non perdere il vitello con crema di tonno, tortellini con spinaci e il risotto osso-buco.\"",
+                titleContact: "Informazioni e Prenotazioni",
+                lblAddress: "Indirizzo:",
+                lblPhone: "Telefono:",
+                lblBooking: "consigliata prenotazione telefonica",
+                lblHours: "Orari:",
+                hoursVal: "Lunedì - Sabato: 12–14:30, 19–22:30<br>Domenica: Chiuso",
+                modalWineTitle: "Carta vini",
+                wineSec1: "Selezioni Principali (ml 750)",
+                wineSec2: "Grandi Annate e Riserve",
+                wineSec3: "Barbaresco e Brunello (ml. 750)",
+                wineSec4: "Valtellina Superiore e Barolo (ml. 750)",
+                wineSec5: "Ulteriori Etichette e Bollicine (ml. 750)",
+                wineSec6: "Le Mezze Bottiglie (ml. 375)",
+                wineSec7: "Vini Bianchi (Mezze Bottiglie)",
+                footerRights: "Tutti i diritti riservati."
+            },
+            en: {
+                navLocale: "The Restaurant",
+                navMenu: "Menu",
+                navReviews: "Reviews",
+                navContact: "Contact",
+                headerTitle: "Trattoria Milanese dal 1933",
+                headerSubtitle: "True Milanese tradition in the heart of the city",
+                titleLocale: "The Restaurant",
+                aboutText: 'Founded in 1933, <strong>Trattoria Milanese dal 1933</strong> is an authentic Milanese institution on Via Santa Marta. Crossing the threshold means immersing yourself in an atmosphere of times past, featuring classic decor, family warmth, and an absolute dedication to the genuine flavors of Lombard cuisine passed down through generations.',
+                titleMenu: "Daily Menu",
+                catAntipasti: "Appetizers",
+                catMinestre: "Soups & Pasta",
+                catPiattiFarsi: "Special Dishes",
+                catPiattiGiorno: "Daily Specials",
+                catPesci: "Fish",
+                catVerdure: "Vegetables & Legumes",
+                catFormaggi: "Cheeses",
+                catFrutta: "Fresh Fruit",
+                catDolci: "Desserts & Ice Cream",
+                catBirra: "Menabrea & Poretti Beer",
+                catBevande: "Soft Drinks & Water",
+                catViniCalice: "Wines by the Glass / Quarter",
+                btnWineModal: "Browse complete wine list",
+                catCaffe: "Coffee",
+                notesTitle: "Important Notes",
+                note1: "<strong>Tourist Lunch</strong> (wine and drinks excluded): 1 daily first course, 1 daily second course, and 1 daily dessert for <strong>€ 48</strong> per person.",
+                note2: "Some out-of-season products are prepared in-house and blast-chilled (*).",
+                note3: "For food allergies or intolerances, please inform the dining room staff.",
+                note4: "Reduced portions will be charged at 70%.",
+                titleReviews: "Reviews",
+                review1: "\"Great Milanese cuisine: I have been here several times and it has never disappointed. The menu offers a wide choice of dishes, both Milanese tradition and other proposals. Excellent, attentive, and professional service. A special mention also to the homemade desserts, truly delicious (top tiramisu). Highly recommended!\"",
+                review2: "\"Very authentic Italian experience, well hosted with a great service team helping with food selection and ensuring customers are happy with the experience. The food is extraordinary, simple, and well-made. Do not miss the veal with tuna cream, spinach tortellini, and the osso-buco risotto.\"",
+                titleContact: "Information & Reservations",
+                lblAddress: "Address:",
+                lblPhone: "Phone:",
+                lblBooking: "phone reservation recommended",
+                lblHours: "Hours:",
+                hoursVal: "Monday - Saturday: 12–14:30, 19–22:30<br>Sunday: Closed",
+                modalWineTitle: "Wine List",
+                wineSec1: "Main Selections (ml 750)",
+                wineSec2: "Great Vintages & Reserves",
+                wineSec3: "Barbaresco & Brunello (ml. 750)",
+                wineSec4: "Valtellina Superiore & Barolo (ml. 750)",
+                wineSec5: "Additional Labels & Bubbles (ml. 750)",
+                wineSec6: "Half Bottles (ml. 375)",
+                wineSec7: "White Wines (Half Bottles)",
+                footerRights: "All rights reserved."
+            }
+        };
+
+        let currentLang = 'it';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'it' ? 'en' : 'it';
+            
+            // Aggiorna i testi di entrambi i bottoni lingua (desktop e mobile)
+            document.getElementById('desktopLangBtn').innerText = currentLang === 'it' ? 'EN' : 'IT';
+            document.getElementById('mobileLangBtn').innerText = currentLang === 'it' ? 'EN' : 'IT';
+
+            // Sostituisci tutti gli elementi con attributo data-key
+            const elements = document.querySelectorAll('[data-key]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+        }
+
         // Script per gestire la modale della carta vini
         const modal = document.getElementById("wineModal");
         const btn = document.getElementById("openWineModal");
