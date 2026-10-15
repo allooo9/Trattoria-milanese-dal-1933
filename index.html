@@ -56,7 +56,8 @@
             background-color: var(--accent-color);
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
             padding: 1rem;
             position: sticky;
             top: 0;
@@ -113,34 +114,86 @@
             color: var(--primary-color);
         }
 
+        .menu-category {
+            margin-bottom: 2.5rem;
+        }
+
+        .menu-category h3 {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
         .menu-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1.5rem;
-            margin-top: 2rem;
+            gap: 1rem;
         }
 
         .menu-item {
             background-color: var(--card-bg);
-            padding: 1.5rem 2rem;
+            padding: 1rem 1.5rem;
             border-left: 4px solid var(--accent-color);
             box-shadow: 0 2px 5px rgba(0,0,0,0.03);
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
+            align-items: center;
         }
 
-        .menu-item-info h3 {
+        .menu-item-info span.name {
             font-family: 'Times New Roman', Times, serif;
             color: var(--primary-color);
-            font-size: 1.3rem;
-            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+            font-weight: bold;
         }
 
-        .menu-item-info p {
+        .menu-item-price {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            margin-left: 1rem;
+            white-space: nowrap;
+        }
+
+        .notes-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-top: 2rem;
             font-size: 0.95rem;
-            color: #6c645b;
-            font-style: italic;
+        }
+
+        .notes-box h4 {
+            font-family: 'Times New Roman', Times, serif;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .notes-box ul {
+            margin-left: 1.2rem;
+        }
+
+        .notes-box li {
+            margin-bottom: 0.4rem;
+        }
+
+        .wine-proposals {
+            margin-top: 2rem;
+            background-color: var(--primary-color);
+            color: #f7f5f0;
+            padding: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .wine-proposals h4 {
+            font-family: 'Times New Roman', Times, serif;
+            color: var(--gold-color);
+            margin-bottom: 0.5rem;
         }
 
         .reviews-container {
@@ -208,7 +261,6 @@
 
         @media (max-width: 600px) {
             header h1 { font-size: 2.2rem; }
-            .menu-item { flex-direction: column; align-items: flex-start; }
             nav { gap: 1rem; font-size: 0.8rem; }
         }
     </style>
@@ -237,46 +289,179 @@
             </p>
         </section>
 
-        <!-- SEZIONE MENU -->
+        <!-- SEZIONE MENU COMPLETO -->
         <section id="menu">
-            <h2>Il Nostro Menu</h2>
-            <div class="menu-grid">
-                <div class="menu-item">
-                    <div class="menu-item-info">
-                        <h3>Risotto alla Milanese</h3>
-                        <p>Riso carnaroli mantecato allo zafferano con burro e midollo</p>
-                    </div>
+            <h2>Lista del Giorno</h2>
+
+            <!-- ANTIPASTI -->
+            <div class="menu-category">
+                <h3>Antipasti</h3>
+                <div class="menu-grid">
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Bresaola valtellina D.O.P.</span></div><div class="menu-item-price">€ 16</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Antipasto "trattoria milanese"</span></div><div class="menu-item-price">€ 15</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Mozzarella di bufala e pomodoro</span></div><div class="menu-item-price">€ 15</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Vitello tonnato della casa</span></div><div class="menu-item-price">€ 17</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Patè casalingo di tonno, nervetti</span></div><div class="menu-item-price">€ 14</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Cotechino di canneto</span></div><div class="menu-item-price">€ 15</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Cotolette e melanzane in carpione</span></div><div class="menu-item-price">€ 14</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Prosciutto di parma e melone</span></div><div class="menu-item-price">€ 17</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Prosciutto, lardo, salumi vari</span></div><div class="menu-item-price">€ 12</div></div>
                 </div>
-                <div class="menu-item">
-                    <div class="menu-item-info">
-                        <h3>Cotoletta alla Milanese</h3>
-                        <p>Tenera lombata di vitello con osso, dorata nel burro chiarificato</p>
-                    </div>
+            </div>
+
+            <!-- MINESTRE -->
+            <div class="menu-category">
+                <h3>Minestre</h3>
+                <div class="menu-grid">
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Brodo in tazza</span></div><div class="menu-item-price">€ 8</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Tagliatelle fresche ai carciofi (*)</span></div><div class="menu-item-price">€ 18</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Pasta al ragu o alla carbonara</span></div><div class="menu-item-price">€ 17</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Spaghetti espressi all'arrabbiata</span></div><div class="menu-item-price">€ 10</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Tortellini di ricotta o zucca</span></div><div class="menu-item-price">€ 15</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Tortellini a mano al sugo d'arrosto</span></div><div class="menu-item-price">€ 17</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Risotto alla milanese o al salto</span></div><div class="menu-item-price">€ 19</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Gnocchi casalinghi di patate</span></div><div class="menu-item-price">€ 12</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Maccheroncini o trofie freschi</span></div><div class="menu-item-price">€ 12</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Minestrone di pasta</span></div><div class="menu-item-price">€ 11</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Zuppa di legumi o di verdura</span></div><div class="menu-item-price">€ 11</div></div>
                 </div>
-                <div class="menu-item">
-                    <div class="menu-item-info">
-                        <h3>Ossobuco di Vitello</h3>
-                        <p>Brasato lentamente con verdure, servito con gremolada e midollo</p>
-                    </div>
+            </div>
+
+            <!-- PIATTI DA FARSI -->
+            <div class="menu-category">
+                <h3>Piatti da Farsi</h3>
+                <div class="menu-grid">
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Risotto e ossobuco</span></div><div class="menu-item-price">€ 35</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Costata di manzo pezzata valtellina</span></div><div class="menu-item-price">€ 32</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Asparagi freschi alla bismark</span></div><div class="menu-item-price">€ 29</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Costoletta alla milanese</span></div><div class="menu-item-price">€ 32</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Piatto misto di cotolette</span></div><div class="menu-item-price">€ 32</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Cotolette farcite al prosciutto</span></div><div class="menu-item-price">€ 32</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Cotoletta di lonza con giardiniera</span></div><div class="menu-item-price">€ 24</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Straccetti di manzo al rosmarino</span></div><div class="menu-item-price">€ 28</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Scaloppine al marsala o a piacere</span></div><div class="menu-item-price">€ 23</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Petti di pollo alla valdostana</span></div><div class="menu-item-price">€ 16</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">2 uova a piacere</span></div><div class="menu-item-price">€ 8</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Trevisana e scamorza ai ferri</span></div><div class="menu-item-price">€ 16</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Rognone e trevisana alla griglia</span></div><div class="menu-item-price">€ 26</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Rognone di vitello trifolato</span></div><div class="menu-item-price">€ 26</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Fritture miste di vitello</span></div><div class="menu-item-price">€ 24</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Cervella di vitello fresca</span></div><div class="menu-item-price">€ 28</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Carne cruda olio e limone</span></div><div class="menu-item-price">€ 24</div></div>
                 </div>
-                <div class="menu-item">
-                    <div class="menu-item-info">
-                        <h3>Cassoeula</h3>
-                        <p>Il celebre stufato invernale di verze e maiale della tradizione lombarda</p>
-                    </div>
+            </div>
+
+            <!-- PIATTI DEL GIORNO -->
+            <div class="menu-category">
+                <h3>Piatti del Giorno</h3>
+                <div class="menu-grid">
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Fesa o punta di vitello al forno</span></div><div class="menu-item-price">€ 21</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Roast-beef all'inglese</span></div><div class="menu-item-price">€ 28</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Vitello tonnato della casa</span></div><div class="menu-item-price">€ 25</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Polenta e brasato</span></div><div class="menu-item-price">€ 26</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Rustin negàa</span></div><div class="menu-item-price">€ 28</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Polpettone di vitello al forno</span></div><div class="menu-item-price">€ 18</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Ossibuchi in umido</span></div><div class="menu-item-price">€ 27</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Fojolo alla milanese</span></div><div class="menu-item-price">€ 22</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Polpette al pomodoro</span></div><div class="menu-item-price">€ 18</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Mondeghili milanesi</span></div><div class="menu-item-price">€ 18</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Mondeghili di verza</span></div><div class="menu-item-price">€ 20</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Polenta taragna uova e gorgonzola</span></div><div class="menu-item-price">€ 17</div></div>
                 </div>
-                <div class="menu-item">
-                    <div class="menu-item-info">
-                        <h3>Mondeghili</h3>
-                        <p>Le tradizionali polpette milanesi speziate, fritte a regola d'arte</p>
-                    </div>
+            </div>
+
+            <!-- PESCI -->
+            <div class="menu-category">
+                <h3>Pesci</h3>
+                <div class="menu-grid">
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Salmone ai ferri o al vapore</span></div><div class="menu-item-price">€ 28</div></div>
                 </div>
-                <div class="menu-item">
-                    <div class="menu-item-info">
-                        <h3>Zabaione Caldo</h3>
-                        <p>Preparato al momento alcolico e soffice, come vuole la tradizione</p>
-                    </div>
+            </div>
+
+            <!-- LEGUMI E VERDURE -->
+            <div class="menu-category">
+                <h3>Legumi e Verdure</h3>
+                <div class="menu-grid">
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Giardiniera della casa</span></div><div class="menu-item-price">€ 12</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Carciofi freschi al tegame (*)</span></div><div class="menu-item-price">€ 12</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Carciofi al tegame con taleggio (*)</span></div><div class="menu-item-price">€ 19</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Insalata mista</span></div><div class="menu-item-price">€ 9</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Insalata di cicorino fresco</span></div><div class="menu-item-price">€ 9</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Asparagi freschi alla parmigiana</span></div><div class="menu-item-price">€ 18</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Purè di patate fresche</span></div><div class="menu-item-price">€ 6</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Patate al forno</span></div><div class="menu-item-price">€ 6</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Piatto di verdure a piacere</span></div><div class="menu-item-price">€ 9</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Polenta taragna nostrana</span></div><div class="menu-item-price">€ 7</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Insalata russa fresca casalinga</span></div><div class="menu-item-price">€ 14</div></div>
                 </div>
+            </div>
+
+            <!-- FORMAGGI -->
+            <div class="menu-category">
+                <h3>Formaggi</h3>
+                <div class="menu-grid">
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Crescenza e mostarda di castagne</span></div><div class="menu-item-price">€ 9</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Piatto misto di formaggi</span></div><div class="menu-item-price">€ 15</div></div>
+                </div>
+            </div>
+
+            <!-- FRUTTA FRESCA -->
+            <div class="menu-category">
+                <h3>Frutta Fresca</h3>
+                <div class="menu-grid">
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Piatto di frutta mista preparata</span></div><div class="menu-item-price">€ 9</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Mango o papaya freschi al piatto</span></div><div class="menu-item-price">€ 10</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Ananas naturale</span></div><div class="menu-item-price">€ 6</div></div>
+                </div>
+            </div>
+
+            <!-- DOLCI E GELATI -->
+            <div class="menu-category">
+                <h3>Dolci e Gelati</h3>
+                <div class="menu-grid">
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Zabajone caldo con panettone</span></div><div class="menu-item-price">€ 12</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Tiramisù della casa</span></div><div class="menu-item-price">€ 9</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Trancio di torta casalinga</span></div><div class="menu-item-price">€ 8</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Fragoline di bosco fresche</span></div><div class="menu-item-price">€ 11</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Composta di frutta con gelato</span></div><div class="menu-item-price">€ 9</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Gelato affogato al caffè o amarene</span></div><div class="menu-item-price">€ 10</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Crème caramel della casa</span></div><div class="menu-item-price">€ 8</div></div>
+                </div>
+            </div>
+
+            <!-- BEVANDE E CAFFÈ -->
+            <div class="menu-category">
+                <h3>Birre, Bevande e Vini</h3>
+                <div class="menu-grid">
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Birra Menabrea e Poretti (33 cl)</span></div><div class="menu-item-price">€ 7</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Birra Menabrea e Poretti (66 cl)</span></div><div class="menu-item-price">€ 14</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Bibite in bottiglia (33 cl)</span></div><div class="menu-item-price">€ 7</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">San Pellegrino (100 cl)</span></div><div class="menu-item-price">€ 6</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Acqua minerale gasata/liscia (1 L)</span></div><div class="menu-item-price">€ 3</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">D.O.C.G. Prosecco Superiore (al calice)</span></div><div class="menu-item-price">€ 9</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">D.O.C. Piemonte Cortese (1/4 o al calice)</span></div><div class="menu-item-price">€ 8</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">D.O.C. Piemonte Barbera d'Asti (1/4 o al calice)</span></div><div class="menu-item-price">€ 8</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">D.O.C. Maremma Toscana (1/4 o al calice)</span></div><div class="menu-item-price">€ 8</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">D.O.C. Bonarda "Costa" B. Verdi (1/4 o al calice)</span></div><div class="menu-item-price">€ 8</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Caffè espresso, decaffeinato</span></div><div class="menu-item-price">€ 3</div></div>
+                    <div class="menu-item"><div class="menu-item-info"><span class="name">Caffè macchiato</span></div><div class="menu-item-price">€ 4</div></div>
+                </div>
+            </div>
+
+            <!-- NOTE E PROPOSTE -->
+            <div class="notes-box">
+                <h4>Note Importanti</h4>
+                <ul>
+                    <li><strong>Pranzo turistico</strong> (vino e bevande escluse): 1 primo del giorno, 1 secondo del giorno e 1 dessert del giorno a <strong>€ 48</strong> a persona.</li>
+                    <li>Alcuni prodotti (fuori stagione) sono preparati internamente e crioconservati (*).</li>
+                    <li>Per problemi di allergie o intolleranze alimentari rivolgersi al personale di sala.</li>
+                    <li>La razione ridotta verrà calcolata al 70%.</li>
+                </ul>
+            </div>
+
+            <div class="wine-proposals">
+                <h4>Le Nostre Proposte dei Vini</h4>
+                <p>Disponibile un'ampia selezione di etichette pregiate italiane e locali per accompagnare al meglio i piatti della tradizione milanese. Chiedi consiglio al nostro personale per l'abbinamento ideale.</p>
             </div>
         </section>
 
