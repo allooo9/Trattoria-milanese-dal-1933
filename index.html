@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trattoria Milanese - Dal 1933</title>
+    <style>
+        :root {
+            --bg-color: #fcfbf9;
+            --card-bg: #f4f1ea;
+            --primary-color: #2b2621;
+            --accent-color: #6a1b29; /* Bordeaux antico */
+            --gold-color: #b59b52;
+            --text-color: #4a453f;
+            --border-color: #e3decb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: Georgia, serif;
+            line-height: 1.7;
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: #f7f5f0;
+            text-align: center;
+            padding: 4rem 2rem;
+            border-bottom: 4px solid var(--gold-color);
+        }
+
+        header h1 {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 3rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #d1c7b7;
+        }
+
+        nav {
+            background-color: var(--accent-color);
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Times New Roman', Times, serif;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--gold-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 2.2rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background-color: var(--gold-color);
+            margin: 0.5rem auto 0;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto;
+            color: var(--primary-color);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .menu-item {
+            background-color: var(--card-bg);
+            padding: 1.5rem 2rem;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .menu-item-info h3 {
+            font-family: 'Times New Roman', Times, serif;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .menu-item-info p {
+            font-size: 0.95rem;
+            color: #6c645b;
+            font-style: italic;
+        }
+
+        .reviews-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .review-card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .review-card p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .review-card span {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            color: var(--accent-color);
+            display: block;
+            text-align: right;
+        }
+
+        .info-box {
+            background-color: var(--primary-color);
+            color: #f7f5f0;
+            padding: 2.5rem;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .info-box h2 {
+            color: #fff;
+        }
+
+        .info-box h2::after {
+            background-color: var(--gold-color);
+        }
+
+        .info-details {
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .info-details p {
+            margin-bottom: 0.8rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #201b17;
+            color: #8c8378;
+            font-size: 0.9rem;
+            border-top: 1px solid #332d27;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.2rem; }
+            .menu-item { flex-direction: column; align-items: flex-start; }
+            nav { gap: 1rem; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Trattoria Milanese</h1>
+        <p>Dal 1933 — La vera tradizione milanese nel cuore della città</p>
+    </header>
+
+    <nav>
+        <a href="#locale">Il Locale</a>
+        <a href="#menu">Menu</a>
+        <a href="#recensioni">Recensioni</a>
+        <a href="#contatti">Contatti</a>
+    </nav>
+
+    <div class="container">
+        
+        <!-- SEZIONE IL LOCALE -->
+        <section id="locale">
+            <h2>Il Locale</h2>
+            <p class="about-text">
+                Fondata nel 1933, la <strong>Trattoria Milanese</strong> è un'autentica istituzione meneghina in Via Santa Marta. Varcare la soglia significa immergersi in un'atmosfera d'altri tempi, fatta di arredi classici, calore familiare e una dedizione assoluta ai sapori genuini della cucina lombarda tramandata di generazione in generazione.
+            </p>
+        </section>
+
+        <!-- SEZIONE MENU -->
+        <section id="menu">
+            <h2>Il Nostro Menu</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-item-info">
+                        <h3>Risotto alla Milanese</h3>
+                        <p>Riso carnaroli mantecato allo zafferano con burro e midollo</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-info">
+                        <h3>Cotoletta alla Milanese</h3>
+                        <p>Tenera lombata di vitello con osso, dorata nel burro chiarificato</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-info">
+                        <h3>Ossobuco di Vitello</h3>
+                        <p>Brasato lentamente con verdure, servito con gremolada e midollo</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-info">
+                        <h3>Cassoeula</h3>
+                        <p>Il celebre stufato invernale di verze e maiale della tradizione lombarda</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-info">
+                        <h3>Mondeghili</h3>
+                        <p>Le tradizionali polpette milanesi speziate, fritte a regola d'arte</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-info">
+                        <h3>Zabaione Caldo</h3>
+                        <p>Preparato al momento alcolico e soffice, come vuole la tradizione</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEZIONE RECENSIONI -->
+        <section id="recensioni">
+            <h2>Dicono di Noi</h2>
+            <div class="reviews-container">
+                <div class="review-card">
+                    <p>"Un locale che profuma di storia vera. La cotoletta è impareggiabile, alta e croccante fuori, tenerissima dentro. L'atmosfera intima e l'accoglienza calorosa completano un'esperienza perfetta."</p>
+                    <span>— Marco G. (Google Reviews)</span>
+                </div>
+                <div class="review-card">
+                    <p>"Niente fronzoli moderni, solo la grandissima cucina milanese fatta come si deve. Il risotto allo zafferano è da standing ovation. Consigliatissimo a chi cerca l'autenticità."</p>
+                    <span>— Francesca V. (TripAdvisor)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEZIONE CONTATTI -->
+        <section id="contatti">
+            <div class="info-box">
+                <h2>Informazioni e Prenotazioni</h2>
+                <div class="info-details">
+                    <p><strong>Indirizzo:</strong> Via Santa Marta 11, 20123 Milano (MI)</p>
+                    <p><strong>Telefono:</strong> Consigliata la prenotazione telefonica</p>
+                    <p><strong>Orari:</strong> Aperto a pranzo e a cena</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 1933-2026 Trattoria Milanese — Tutti i diritti riservati.</p>
+    </footer>
+
+</body>
+</html>
