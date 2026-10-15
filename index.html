@@ -182,18 +182,115 @@
             margin-bottom: 0.4rem;
         }
 
-        .wine-proposals {
+        .wine-btn-container {
+            text-align: center;
             margin-top: 2rem;
-            background-color: var(--primary-color);
-            color: #f7f5f0;
-            padding: 1.5rem;
-            border-radius: 4px;
         }
 
-        .wine-proposals h4 {
+        .btn-wine {
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 0.9rem 2rem;
+            text-decoration: none;
             font-family: 'Times New Roman', Times, serif;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+            transition: background 0.3s ease;
+        }
+
+        .btn-wine:hover {
+            background-color: var(--primary-color);
             color: var(--gold-color);
-            margin-bottom: 0.5rem;
+        }
+
+        /* Modale per la carta vini */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+        }
+
+        .modal-content {
+            background-color: var(--bg-color);
+            margin: 5% auto;
+            padding: 2.5rem;
+            border: 1px solid var(--border-color);
+            width: 90%;
+            max-width: 850px;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        .close {
+            color: var(--primary-color);
+            position: absolute;
+            right: 1.5rem;
+            top: 1rem;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--accent-color);
+        }
+
+        .modal-content h3 {
+            font-family: 'Times New Roman', Times, serif;
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid var(--gold-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .wine-section-title {
+            font-family: 'Times New Roman', Times, serif;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.8rem 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.3rem;
+        }
+
+        .wine-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .wine-item {
+            display: flex;
+            justify-content: space-between;
+            background-color: var(--card-bg);
+            padding: 0.7rem 1rem;
+            border-left: 3px solid var(--gold-color);
+            font-size: 0.95rem;
+        }
+
+        .wine-name {
+            font-family: 'Times New Roman', Times, serif;
+            color: var(--primary-color);
+        }
+
+        .wine-details {
+            font-family: 'Times New Roman', Times, serif;
+            color: var(--accent-color);
+            white-space: nowrap;
+            margin-left: 1rem;
+            font-weight: bold;
         }
 
         .reviews-container {
@@ -262,6 +359,8 @@
         @media (max-width: 600px) {
             header h1 { font-size: 2.2rem; }
             nav { gap: 1rem; font-size: 0.8rem; }
+            .wine-item { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+            .wine-details { margin-left: 0; }
         }
     </style>
 </head>
@@ -429,7 +528,7 @@
                 </div>
             </div>
 
-            <!-- BEVANDE E CAFFÈ -->
+            <!-- BEVANDE E VINI AL CALICE -->
             <div class="menu-category">
                 <h3>Birre, Bevande e Vini</h3>
                 <div class="menu-grid">
@@ -446,6 +545,11 @@
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Caffè espresso, decaffeinato</span></div><div class="menu-item-price">€ 3</div></div>
                     <div class="menu-item"><div class="menu-item-info"><span class="name">Caffè macchiato</span></div><div class="menu-item-price">€ 4</div></div>
                 </div>
+
+                <!-- TASTO CARTA VINI COMPLETA -->
+                <div class="wine-btn-container">
+                    <button class="btn-wine" id="openWineModal">Sfoglia lista vini completa</button>
+                </div>
             </div>
 
             <!-- NOTE E PROPOSTE -->
@@ -457,11 +561,6 @@
                     <li>Per problemi di allergie o intolleranze alimentari rivolgersi al personale di sala.</li>
                     <li>La razione ridotta verrà calcolata al 70%.</li>
                 </ul>
-            </div>
-
-            <div class="wine-proposals">
-                <h4>Le Nostre Proposte dei Vini</h4>
-                <p>Disponibile un'ampia selezione di etichette pregiate italiane e locali per accompagnare al meglio i piatti della tradizione milanese. Chiedi consiglio al nostro personale per l'abbinamento ideale.</p>
             </div>
         </section>
 
@@ -494,9 +593,135 @@
 
     </div>
 
+    <!-- MODALE CARTA VINI COMPLETA -->
+    <div id="wineModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeWineModal">&times;</span>
+            <h3>Le Nostre Proposte dei Vini al Rientro in Città</h3>
+
+            <div class="wine-section-title">Selezioni Principali</div>
+            <div class="wine-grid">
+                <div class="wine-item"><span class="wine-name">D.O.C. Oltrepo Pavese Pinot Nero "TERRAZZE ALTE" Ten. Mazzolino 2023</span><span class="wine-details">€ 36.00 (ml.750)</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Barolo "della Tradizione" Tenimenti Ca' Bianca 2020</span><span class="wine-details">€ 43.00 »</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Langhe Nebbiolo "Tradizione" Tenimenti Ca' Bianca 2023</span><span class="wine-details">€ 28.00 »</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Barbera del Monferrato "MARAIA" Marchesi di Barolo 2022</span><span class="wine-details">€ 26.00 »</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Bolgheri "Stupore" Campo alle Comete Feudi San Gregorio 2024</span><span class="wine-details">€ 34.00 »</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Bonarda frizzante "Vergombera" Verdi Bruno 2023</span><span class="wine-details">€ 24.00 »</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Buttafuoco "Cacciatore" Az. Agr. Fiamberti 2024</span><span class="wine-details">€ 29.00 »</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Valtellina Superiore INFERNO N. Negri 2023</span><span class="wine-details">€ 28.00 »</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Valtellina Superiore Sassella "LE TENSE" Nino Negri 2021</span><span class="wine-details">€ 38.00 »</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. AMARONE DELLA VALPOLICELLA "Santico" Santi 2019</span><span class="wine-details">€ 46.00 »</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Riviera del Garda "rosa dei Frati" Cà dei Frati rosato 2025</span><span class="wine-details">€ 28.00 »</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Lugana "I Frati" Cà dei Frati bianco 2025</span><span class="wine-details">€ 31.00 »</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Colli Tortonesi Timorasso Cantina di Nizza bianco 2023</span><span class="wine-details">€ 34.00 »</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Alto Adige Pinot Grigio Ris. "Giatl" P.Zemmer bianco 2023</span><span class="wine-details">€ 43.00 »</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.P. Valle d'Aosta Petite Arvine Les Cretes bianco 2025</span><span class="wine-details">€ 35.00 »</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Gavi di Gavi "Nuovo Quadro" La Battistina bianco 2025</span><span class="wine-details">€ 26.00 »</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. COLLIO Sauvignon - Ribolla Gialla Formentini bianco 2024</span><span class="wine-details">€ 28.00 »</span></div>
+                <div class="wine-item"><span class="wine-name">I.G.T. Alpi Retiche "Ca' Brione" Nino Negri bianco 2024</span><span class="wine-details">€ 36.00 »</span></div>
+                <div class="wine-item"><span class="wine-name">I.G.T. SICILIA GRILLO "Solandia" bianco 2024</span><span class="wine-details">€ 16.00 »</span></div>
+            </div>
+
+            <div class="wine-section-title">Grandi Annate e Riserve</div>
+            <div class="wine-grid">
+                <div class="wine-item"><span class="wine-name">D.O.C.G. 1999 ANNATA ECCELLENTE - Riserva Grandi Annate Avignonesi - Vino Nobile di Montepulciano (ml. 750)</span><span class="wine-details">€ 129.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. CHIANTI CLASSICO "Vigna La Selvanella" Melini 2020 (ml. 750)</span><span class="wine-details">€ 41.00</span></div>
+            </div>
+
+            <div class="wine-section-title">Barbaresco e Brunello (ml. 750)</div>
+            <div class="wine-grid">
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Barbaresco: Cascina Bruciata "Rio Sordo" 2021</span><span class="wine-details">€ 67.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Barbaresco: Marchesi di Barolo "Serragrilli" 2021</span><span class="wine-details">€ 61.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Barbaresco: Marchesi di Barolo "Tradizione" 2022</span><span class="wine-details">€ 49.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Brunello di Montalcino: "Della Tradizione" Camigliano 2021</span><span class="wine-details">€ 64.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Brunello di Montalcino: "Gualto" Riserva Camigliano 2016</span><span class="wine-details">€ 114.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Barbera d'Asti: Sup. 70 Vendemmie Cant. di Nizza 2023</span><span class="wine-details">€ 32.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Barbera d'Asti: Nizza Ceppi Vecchi Cantina di Nizza 2022</span><span class="wine-details">€ 38.00</span></div>
+            </div>
+
+            <div class="wine-section-title">Valtellina Superiore e Barolo (ml. 750)</div>
+            <div class="wine-grid">
+                <div class="wine-item"><span class="wine-name">Nino Negri "Castel Chiuro" 2015</span><span class="wine-details">€ 98.00</span></div>
+                <div class="wine-item"><span class="wine-name">Nino Negri "Cinquestelle" Sfursat 2020</span><span class="wine-details">€ 116.00</span></div>
+                <div class="wine-item"><span class="wine-name">Nino Negri "Carlo Negri" Sfursat 2021</span><span class="wine-details">€ 56.00</span></div>
+                <div class="wine-item"><span class="wine-name">Nino Negri "Vigna Fracia" 2020</span><span class="wine-details">€ 58.00</span></div>
+                <div class="wine-item"><span class="wine-name">Nino Negri "Vigna Sassorosso" 2020</span><span class="wine-details">€ 49.00</span></div>
+                <div class="wine-item"><span class="wine-name">Nino Negri "Vigna Cà Guicciardi" 2020</span><span class="wine-details">€ 52.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Barolo: "Comune di Barolo" M. di Barolo 2019</span><span class="wine-details">€ 76.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Barolo: "Cannubi" Marchesi di Barolo 2021</span><span class="wine-details">€ 107.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Barolo: "Costa di Rose" Marchesi di Barolo 2019</span><span class="wine-details">€ 89.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Barolo: "Tradizione" Marchesi di Barolo 2019</span><span class="wine-details">€ 65.00</span></div>
+            </div>
+
+            <div class="wine-section-title">Ulteriori Etichette e Bollicine (ml. 750)</div>
+            <div class="wine-grid">
+                <div class="wine-item"><span class="wine-name">I.G.T. Primitivo del Salento "Piluna" Castello Monaci 2024</span><span class="wine-details">€ 19.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Alto Adige Pinot Nero "ROLHUT" Peter Zemmer 2025</span><span class="wine-details">€ 28.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.P. Valle d'Aosta Syrah Les Cretes 2023</span><span class="wine-details">€ 41.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Nebbiolo d'Alba "Roccheri" Crus Storici Marchesi di Barolo 2022</span><span class="wine-details">€ 41.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Barbera d'Alba "Peiragal" Crus Storici Marchesi di Barolo 2023</span><span class="wine-details">€ 37.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Dolcetto d'Alba "Bossët" Crus Storici Marchesi di Barolo 2023</span><span class="wine-details">€ 32.00</span></div>
+                <div class="wine-item"><span class="wine-name">Oltrepo Pavese Rosso "Riserva Cavariola" Bruno Verdi 2021</span><span class="wine-details">€ 42.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Oltrepo Pavese Pinot Nero "Terrazze" Ten. Mazzolino 2024</span><span class="wine-details">€ 28.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Chianti Colli Senesi "vino biologico" Camigliano 2023</span><span class="wine-details">€ 24.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Chianti Classico "vino biologico" Brancaia 2023</span><span class="wine-details">€ 32.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Vino Nobile di Montepulciano Poliziano 2022</span><span class="wine-details">€ 48.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Valpolicella Ripasso Classico Sup. "Solane" Santi 2021</span><span class="wine-details">€ 28.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Amarone della Valpol. "Pietro Dal Cero" Cà dei Frati 2018</span><span class="wine-details">€ 89.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Amarone della Valpolicella "Carlo Santi 1843" Santi 2016</span><span class="wine-details">€ 78.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Amarone della Valpolicella "Le Origini" Bolla 2018</span><span class="wine-details">€ 72.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Valdobbiadene Extra Dry "Cuvee 13" Col Vetoraz 2025</span><span class="wine-details">€ 36.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Franciacorta Dosaggio Zero "Till" degor. 2025</span><span class="wine-details">€ 58.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Franciacorta Brut degor. 2024</span><span class="wine-details">€ 63.00</span></div>
+            </div>
+
+            <div class="wine-section-title">Le Mezze Bottiglie (ml. 375)</div>
+            <div class="wine-grid">
+                <div class="wine-item"><span class="wine-name">I.G.T. Brancaia "Il Blu" 2021</span><span class="wine-details">€ 56.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Brunello di Montalcino 2020</span><span class="wine-details">€ 38.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Barolo "Marchesi di Barolo" 2021</span><span class="wine-details">€ 36.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Barbera d'Alba Mar. di Barolo 2023</span><span class="wine-details">€ 16.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Nebbiolo d'Alba Mar. di Barolo 2022</span><span class="wine-details">€ 19.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Dolcetto d'Alba Mar. di Barolo 2025</span><span class="wine-details">€ 15.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Nobile di Montepulc. Poliziano 2022</span><span class="wine-details">€ 28.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Oltrepo Buttafuoco Fiamberti 2023</span><span class="wine-details">€ 18.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Car. del Sulcis Terre Brune 2018</span><span class="wine-details">€ 36.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Car. del Sulcis Rocca Rubia 2020</span><span class="wine-details">€ 22.00</span></div>
+            </div>
+
+            <div class="wine-section-title">Vini Bianchi (Mezze Bottiglie)</div>
+            <div class="wine-grid">
+                <div class="wine-item"><span class="wine-name">D.O.C. Langhe Bric Amel Mar. di Barolo 2025</span><span class="wine-details">€ 16.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C.G. Gavi Mar. di Barolo 2025</span><span class="wine-details">€ 18.00</span></div>
+                <div class="wine-item"><span class="wine-name">D.O.C. Lugana Ca' dei Frati 2025</span><span class="wine-details">€ 17.00</span></div>
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 1933-2026 Trattoria Milanese — Tutti i diritti riservati.</p>
+        <p>&copy; 1933-2026 Trattoria Milanese — Tutti i diritti riservati. <br> 20123 MILANO - Via S. Marta, 11 - Tel. 02.86.45.19.91</p>
     </footer>
+
+    <script>
+        // Script per gestire l'apertura e la chiusura della modale della carta vini
+        const modal = document.getElementById("wineModal");
+        const btn = document.getElementById("openWineModal");
+        const span = document.getElementById("closeWineModal");
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 
 </body>
 </html>
