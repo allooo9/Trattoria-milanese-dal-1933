@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trattoria Milanese - Dal 1933</title>
+    <title>Trattoria Milanese dal 1933</title>
     <style>
         :root {
             --bg-color: #fcfbf9;
@@ -347,6 +347,20 @@
             margin-bottom: 0.8rem;
         }
 
+        .map-container {
+            margin-top: 1.5rem;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 2px solid var(--gold-color);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 250px;
+            border: 0;
+            display: block;
+        }
+
         footer {
             text-align: center;
             padding: 2rem;
@@ -367,13 +381,13 @@
 <body>
 
     <header>
-        <h1>Trattoria Milanese</h1>
-        <p>Dal 1933 — La vera tradizione milanese nel cuore della città</p>
+        <h1>Trattoria Milanese dal 1933</h1>
+        <p>La vera tradizione milanese nel cuore della città</p>
     </header>
 
     <nav>
         <a href="#locale">Il Locale</a>
-        <a href="#menu">Menu</a>
+        <a href="#menu">Menù</a>
         <a href="#recensioni">Recensioni</a>
         <a href="#contatti">Contatti</a>
     </nav>
@@ -384,13 +398,13 @@
         <section id="locale">
             <h2>Il Locale</h2>
             <p class="about-text">
-                Fondata nel 1933, la <strong>Trattoria Milanese</strong> è un'autentica istituzione meneghina in Via Santa Marta. Varcare la soglia significa immergersi in un'atmosfera d'altri tempi, fatta di arredi classici, calore familiare e una dedizione assoluta ai sapori genuini della cucina lombarda tramandata di generazione in generazione.
+                Fondata nel 1933, la <strong>Trattoria Milanese dal 1933</strong> è un'autentica istituzione meneghina in Via Santa Marta. Varcare la soglia significa immergersi in un'atmosfera d'altri tempi, fatta di arredi classici, calore familiare e una dedizione assoluta ai sapori genuini della cucina lombarda tramandata di generazione in generazione.
             </p>
         </section>
 
         <!-- SEZIONE MENU COMPLETO -->
         <section id="menu">
-            <h2>Lista del Giorno</h2>
+            <h2>Menù del Giorno</h2>
 
             <!-- ANTIPASTI -->
             <div class="menu-category">
@@ -590,12 +604,12 @@
             <h2>Dicono di Noi</h2>
             <div class="reviews-container">
                 <div class="review-card">
-                    <p>"Un locale che profuma di storia vera. La cotoletta è impareggiabile, alta e croccante fuori, tenerissima dentro. L'atmosfera intima e l'accoglienza calorosa completano un'esperienza perfetta."</p>
-                    <span>— Marco G. (Google Reviews)</span>
+                    <p>"Ottima cucina milanese: ci sono stata più volte e non ha mai deluso. Il menu offre un’ampia scelta di piatti, sia della tradizione milanese sia di altre proposte. Servizio eccellente, attento e professionale. Una menzione speciale anche ai dolci, fatti in casa e davvero deliziosi (tiramisú top). Assolutamente consigliato!"</p>
+                    <span>— Recensioni Google</span>
                 </div>
                 <div class="review-card">
-                    <p>"Niente fronzoli moderni, solo la grandissima cucina milanese fatta come si deve. Il risotto allo zafferano è da standing ovation. Consigliatissimo a chi cerca l'autenticità."</p>
-                    <span>— Francesca V. (TripAdvisor)</span>
+                    <p>"Esperienza italiana molto autentica, ben ospitata con un ottimo team di servizio che aiuta nella selezione dei cibi e assicura che i clienti siano soddisfatti dell'esperienza. Il cibo è straordinario, semplice e ben fatto. Non perdere il vitello con crema di tonno, tortellini con spinaci e il risotto osso-buco."</p>
+                    <span>— Tripadvisor</span>
                 </div>
             </div>
         </section>
@@ -605,9 +619,13 @@
             <div class="info-box">
                 <h2>Informazioni e Prenotazioni</h2>
                 <div class="info-details">
-                    <p><strong>Indirizzo:</strong> Via Santa Marta 11, 20123 Milano (MI)</p>
-                    <p><strong>Telefono:</strong> Consigliata la prenotazione telefonica</p>
-                    <p><strong>Orari:</strong> Aperto a pranzo e a cena</p>
+                    <p><strong>Indirizzo:</strong> <a href="https://maps.google.com/?q=Via+Santa+Marta+11+20123+Milano+MI" target="_blank" style="color: #d1c7b7; text-decoration: underline;">Via Santa Marta, 11, 20123 Milano MI</a></p>
+                    <p><strong>Telefono:</strong> 02 8645 1991 (consigliata prenotazione telefonica)</p>
+                    <p><strong>Orari:</strong> Lunedì - Sabato: 12–14:30, 19–22:30<br>Domenica: Chiuso</p>
+                </div>
+                <!-- Mini Mappa di Google Maps -->
+                <div class="map-container">
+                    <iframe src="https://maps.google.com/maps?q=Via+Santa+Marta,+11,+20123+Milano+MI&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </section>
@@ -720,7 +738,7 @@
     </div>
 
     <footer>
-        <p>&copy; 1933-2026 Trattoria Milanese — Tutti i diritti riservati. <br> 20123 MILANO - Via S. Marta, 11 - Tel. 02.86.45.19.91</p>
+        <p>&copy; 1933-2026 Trattoria Milanese dal 1933 — Tutti i diritti riservati.</p>
     </footer>
 
     <script>
