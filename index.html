@@ -26,7 +26,7 @@
         }
 
         html {
-            scroll-padding-top: 80px;
+            scroll-padding-top: 100px;
         }
 
         body {
@@ -37,26 +37,26 @@
             letter-spacing: 0.3px;
         }
 
-        /* HEADER CON GRADIENTE DI SCURI ELEGANTE */
+        /* HEADER DESKTOP */
         header {
             position: relative;
             background: linear-gradient(135deg, #1f1b17 0%, #2b2621 50%, #171412 100%);
             text-align: center;
-            padding: 6rem 1rem 4rem 1rem;
+            padding: 7rem 2rem 5rem 2rem;
             border-bottom: 4px solid var(--gold-color);
             color: #fff;
         }
 
         header h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             margin-bottom: 0.8rem;
             color: #fff;
             text-transform: uppercase;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            white-space: nowrap; /* Mantiene il titolo su una sola riga su desktop */
+            white-space: nowrap;
         }
 
         header p {
@@ -100,15 +100,15 @@
         /* HAMBURGER MENU MOBILE (Nascosto su desktop) */
         .hamburger-btn {
             display: none;
-            position: fixed;
-            top: 15px;
-            right: 15px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
             z-index: 1100;
             background: var(--accent-color);
             border: 2px solid var(--gold-color);
             color: #fff;
-            font-size: 1.5rem;
-            padding: 0.5rem 0.8rem;
+            font-size: 1.4rem;
+            padding: 0.4rem 0.7rem;
             border-radius: 4px;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
@@ -119,10 +119,10 @@
             position: fixed;
             top: 0;
             right: -100%;
-            width: 280px;
+            width: 260px;
             height: 100%;
             background-color: var(--primary-color);
-            z-index: 1050;
+            z-index: 1250;
             box-shadow: -5px 0 25px rgba(0,0,0,0.5);
             transition: right 0.4s ease;
             padding: 5rem 2rem 2rem 2rem;
@@ -139,7 +139,7 @@
             text-decoration: none;
             font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             letter-spacing: 2px;
             padding: 1rem 0;
@@ -333,7 +333,7 @@
         .modal {
             display: none;
             position: fixed;
-            z-index: 1200;
+            z-index: 1500;
             left: 0;
             top: 0;
             width: 100%;
@@ -525,9 +525,8 @@
             text-transform: uppercase;
         }
 
-        /* MEDIA QUERIES PER OTTIMIZZAZIONE SMARTPHONE */
+        /* MEDIA QUERIES ESCLUSIVE PER SMARTPHONE */
         @media (max-width: 768px) {
-            /* Nasconde la barra di navigazione classica e mostra il pulsante hamburger */
             nav {
                 display: none;
             }
@@ -538,14 +537,14 @@
                 display: block;
             }
 
-            /* Riduce gli spazi e le altezze (sfondo grigio più corto) */
             header {
-                padding: 4rem 1rem 2.5rem 1rem;
+                padding: 4.5rem 1rem 2.5rem 1rem;
             }
             header h1 {
-                font-size: 1.8rem; /* Riduce la dimensione per consentire di restare su una sola riga nei piccoli schermi */
+                font-size: 1.8rem;
                 letter-spacing: 1px;
-                white-space: nowrap;
+                white-space: normal; /* Permette al titolo di andare su due righe comodamente su telefono */
+                line-height: 1.3;
             }
             header p {
                 font-size: 1.1rem;
@@ -994,7 +993,8 @@
         const mobileDrawer = document.getElementById("mobileDrawer");
         const mobileLinks = document.querySelectorAll(".mobile-link");
 
-        hamburgerBtn.onclick = function() {
+        hamburgerBtn.onclick = function(e) {
+            e.stopPropagation();
             mobileDrawer.classList.toggle("open");
         }
 
@@ -1004,7 +1004,6 @@
             }
         });
 
-        // Chiude il menu laterale se si clicca fuori
         window.addEventListener('click', function(e) {
             if (!mobileDrawer.contains(e.target) && !hamburgerBtn.contains(e.target) && mobileDrawer.classList.contains("open")) {
                 mobileDrawer.classList.remove("open");
