@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trattoria Milanese dal 1933</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #fcfbf9;
-            --card-bg: #f4f1ea;
-            --primary-color: #2b2621;
-            --accent-color: #6a1b29; /* Bordeaux antico */
-            --gold-color: #b59b52;
-            --text-color: #4a453f;
-            --border-color: #e3decb;
+            --bg-color: #12100e;
+            --surface-color: #1a1613;
+            --card-bg: #221d18;
+            --primary-color: #f4efe6;
+            --accent-color: #8b263e; /* Bordeaux antico vellutato */
+            --accent-hover: #a8324e;
+            --gold-color: #c5a059; /* Oro caldo */
+            --gold-light: #dfc282;
+            --text-muted: #b0a699;
+            --border-color: #383028;
         }
 
         * {
@@ -23,54 +27,63 @@
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: Georgia, serif;
-            line-height: 1.7;
-            padding: 0;
-            margin: 0;
+            color: var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
+            letter-spacing: 0.3px;
         }
 
+        /* HEADER IMMERSIVO */
         header {
-            background-color: var(--primary-color);
-            color: #f7f5f0;
+            position: relative;
+            background: linear-gradient(rgba(18, 16, 14, 0.75), rgba(18, 16, 14, 0.95)), url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
             text-align: center;
-            padding: 4rem 2rem;
-            border-bottom: 4px solid var(--gold-color);
+            padding: 7rem 2rem 5rem 2rem;
+            border-bottom: 2px solid var(--gold-color);
         }
 
         header h1 {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 3rem;
-            letter-spacing: 2px;
-            margin-bottom: 0.5rem;
-            color: #fff;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.8rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
         }
 
         header p {
-            font-size: 1.2rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
             font-style: italic;
-            color: #d1c7b7;
+            color: var(--gold-light);
+            letter-spacing: 1px;
         }
 
+        /* NAVBAR STICKY ELEGANTE */
         nav {
-            background-color: var(--accent-color);
+            background-color: rgba(26, 22, 19, 0.95);
+            backdrop-filter: blur(10px);
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 1.5rem;
-            padding: 1rem;
+            gap: 2.5rem;
+            padding: 1.2rem;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
         nav a {
-            color: #fff;
+            color: var(--primary-color);
             text-decoration: none;
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
             transition: color 0.3s ease;
         }
 
@@ -79,99 +92,139 @@
         }
 
         .container {
-            max-width: 900px;
-            margin: 3rem auto;
-            padding: 0 1.5rem;
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 2rem;
         }
 
         section {
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
         }
 
         h2 {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 2.2rem;
-            color: var(--accent-color);
-            margin-bottom: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            color: var(--gold-color);
+            margin-bottom: 2rem;
             text-align: center;
+            font-weight: 600;
+            letter-spacing: 1.5px;
             position: relative;
         }
 
         h2::after {
-            content: '';
+            content: '✦ ✦ ✦';
             display: block;
-            width: 60px;
-            height: 2px;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-top: 0.5rem;
+            letter-spacing: 6px;
+        }
+
+        /* SEZIONE IL LOCALE */
+        .about-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
             background-color: var(--gold-color);
-            margin: 0.5rem auto 0;
         }
 
         .about-text {
-            font-size: 1.1rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
             text-align: center;
-            max-width: 750px;
+            max-width: 850px;
             margin: 0 auto;
             color: var(--primary-color);
+            line-height: 1.9;
         }
 
+        /* MENU STYLING LUSSO */
         .menu-category {
-            margin-bottom: 2.5rem;
+            margin-bottom: 3.5rem;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
 
         .menu-category h3 {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 1.5rem;
-            color: var(--accent-color);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--gold-color);
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.4rem;
-            margin-bottom: 1rem;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
         }
 
         .menu-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1rem;
+            gap: 1.2rem;
         }
 
         .menu-item {
             background-color: var(--card-bg);
-            padding: 1rem 1.5rem;
-            border-left: 4px solid var(--accent-color);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            padding: 1.2rem 1.5rem;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-2px);
+            border-color: var(--gold-color);
         }
 
         .menu-item-info span.name {
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Cormorant Garamond', serif;
             color: var(--primary-color);
-            font-size: 1.1rem;
-            font-weight: bold;
+            font-size: 1.25rem;
+            font-weight: 600;
         }
 
         .menu-item-price {
-            font-family: 'Times New Roman', Times, serif;
-            font-weight: bold;
-            color: var(--accent-color);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--gold-color);
             font-size: 1.1rem;
             margin-left: 1rem;
             white-space: nowrap;
         }
 
+        /* NOTE E PROPOSTE */
         .notes-box {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 1.5rem;
-            border-radius: 4px;
-            margin-top: 2rem;
+            background-color: var(--surface-color);
+            border: 1px solid var(--gold-color);
+            padding: 2.5rem;
+            border-radius: 8px;
+            margin-top: 3rem;
             font-size: 0.95rem;
+            color: var(--text-muted);
         }
 
         .notes-box h4 {
-            font-family: 'Times New Roman', Times, serif;
-            color: var(--accent-color);
-            margin-bottom: 0.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--gold-color);
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
         }
 
         .notes-box ul {
@@ -179,36 +232,44 @@
         }
 
         .notes-box li {
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.6rem;
         }
 
+        .notes-box strong {
+            color: var(--primary-color);
+        }
+
+        /* BOTTONE CARTA VINI */
         .wine-btn-container {
             text-align: center;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
         }
 
         .btn-wine {
             background-color: var(--accent-color);
             color: #fff;
-            padding: 0.9rem 2rem;
+            padding: 1rem 2.5rem;
             text-decoration: none;
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
-            font-size: 1rem;
-            letter-spacing: 1px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
             border-radius: 4px;
             display: inline-block;
             cursor: pointer;
             border: none;
-            transition: background 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 38, 62, 0.4);
+            transition: all 0.3s ease;
         }
 
         .btn-wine:hover {
-            background-color: var(--primary-color);
-            color: var(--gold-color);
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(168, 50, 78, 0.6);
         }
 
-        /* Modale per la carta vini */
+        /* MODALE CARTA VINI */
         .modal {
             display: none;
             position: fixed;
@@ -218,129 +279,156 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.6);
+            background-color: rgba(10, 8, 7, 0.85);
+            backdrop-filter: blur(8px);
         }
 
         .modal-content {
-            background-color: var(--bg-color);
-            margin: 5% auto;
-            padding: 2.5rem;
-            border: 1px solid var(--border-color);
+            background-color: var(--surface-color);
+            margin: 4% auto;
+            padding: 3rem;
+            border: 1px solid var(--gold-color);
             width: 90%;
-            max-width: 850px;
-            border-radius: 6px;
+            max-width: 900px;
+            border-radius: 10px;
             position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
         }
 
         .close {
-            color: var(--primary-color);
+            color: var(--text-muted);
             position: absolute;
-            right: 1.5rem;
-            top: 1rem;
+            right: 2rem;
+            top: 1.5rem;
             font-size: 2.5rem;
-            font-weight: bold;
+            font-weight: 300;
             cursor: pointer;
+            transition: color 0.2s;
         }
 
         .close:hover {
-            color: var(--accent-color);
+            color: var(--gold-color);
         }
 
         .modal-content h3 {
-            font-family: 'Times New Roman', Times, serif;
-            color: var(--accent-color);
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--gold-color);
+            font-size: 2.4rem;
+            margin-bottom: 2rem;
             text-align: center;
-            border-bottom: 2px solid var(--gold-color);
-            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
         }
 
         .wine-section-title {
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Cormorant Garamond', serif;
             color: var(--primary-color);
-            font-size: 1.3rem;
-            margin: 1.5rem 0 0.8rem 0;
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem 0;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.3rem;
+            padding-bottom: 0.4rem;
+            letter-spacing: 1px;
         }
 
         .wine-grid {
             display: flex;
             flex-direction: column;
-            gap: 0.6rem;
+            gap: 0.8rem;
         }
 
         .wine-item {
             display: flex;
             justify-content: space-between;
             background-color: var(--card-bg);
-            padding: 0.7rem 1rem;
+            padding: 0.9rem 1.2rem;
             border-left: 3px solid var(--gold-color);
+            border-radius: 4px;
             font-size: 0.95rem;
         }
 
         .wine-name {
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Cormorant Garamond', serif;
             color: var(--primary-color);
+            font-size: 1.1rem;
         }
 
         .wine-details {
-            font-family: 'Times New Roman', Times, serif;
-            color: var(--accent-color);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--gold-light);
             white-space: nowrap;
             margin-left: 1rem;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 0.95rem;
         }
 
+        /* SEZIONE RECENSIONI PREMIUM */
         .reviews-container {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
         }
 
         .review-card {
-            background-color: var(--card-bg);
-            padding: 2rem;
-            border-radius: 4px;
+            background-color: var(--surface-color);
+            padding: 2.5rem;
+            border-radius: 8px;
             border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             position: relative;
         }
 
+        .review-card::before {
+            content: '“';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 6rem;
+            color: var(--accent-color);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
         .review-card p {
+            font-family: 'Cormorant Garamond', serif;
             font-style: italic;
-            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            margin-bottom: 1.2rem;
             color: var(--primary-color);
+            position: relative;
+            z-index: 1;
         }
 
         .review-card span {
-            font-family: 'Times New Roman', Times, serif;
-            font-weight: bold;
-            color: var(--accent-color);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--gold-color);
             display: block;
             text-align: right;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
         }
 
+        /* INFO & MAPPA */
         .info-box {
-            background-color: var(--primary-color);
-            color: #f7f5f0;
-            padding: 2.5rem;
-            border-radius: 6px;
+            background-color: var(--surface-color);
+            color: var(--primary-color);
+            padding: 3rem;
+            border-radius: 8px;
+            border: 1px solid var(--gold-color);
             text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
         }
 
         .info-box h2 {
-            color: #fff;
-        }
-
-        .info-box h2::after {
-            background-color: var(--gold-color);
+            color: var(--gold-color);
         }
 
         .info-details {
             margin-top: 1.5rem;
             font-size: 1.1rem;
+            line-height: 2;
         }
 
         .info-details p {
@@ -348,33 +436,37 @@
         }
 
         .map-container {
-            margin-top: 1.5rem;
-            border-radius: 4px;
+            margin-top: 2rem;
+            border-radius: 6px;
             overflow: hidden;
             border: 2px solid var(--gold-color);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
 
         .map-container iframe {
             width: 100%;
-            height: 250px;
+            height: 300px;
             border: 0;
             display: block;
+            filter: grayscale(20%) contrast(110%);
         }
 
         footer {
             text-align: center;
-            padding: 2rem;
-            background-color: #201b17;
-            color: #8c8378;
-            font-size: 0.9rem;
-            border-top: 1px solid #332d27;
+            padding: 3rem 2rem;
+            background-color: #0b0a09;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            border-top: 1px solid var(--border-color);
+            text-transform: uppercase;
         }
 
-        @media (max-width: 600px) {
-            header h1 { font-size: 2.2rem; }
-            nav { gap: 1rem; font-size: 0.8rem; }
-            .wine-item { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
-            .wine-details { margin-left: 0; }
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.6rem; }
+            .container { padding: 0 1rem; }
+            .menu-item { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .menu-item-price { margin-left: 0; }
         }
     </style>
 </head>
@@ -397,9 +489,11 @@
         <!-- SEZIONE IL LOCALE -->
         <section id="locale">
             <h2>Il Locale</h2>
-            <p class="about-text">
-                Fondata nel 1933, la <strong>Trattoria Milanese dal 1933</strong> è un'autentica istituzione meneghina in Via Santa Marta. Varcare la soglia significa immergersi in un'atmosfera d'altri tempi, fatta di arredi classici, calore familiare e una dedizione assoluta ai sapori genuini della cucina lombarda tramandata di generazione in generazione.
-            </p>
+            <div class="about-card">
+                <p class="about-text">
+                    Fondata nel 1933, la <strong>Trattoria Milanese dal 1933</strong> è un'autentica istituzione meneghina in Via Santa Marta. Varcare la soglia significa immergersi in un'atmosfera d'altri tempi, fatta di arredi classici, calore familiare e una dedizione assoluta ai sapori genuini della cucina lombarda tramandata di generazione in generazione.
+                </p>
+            </div>
         </section>
 
         <!-- SEZIONE MENU COMPLETO -->
@@ -619,8 +713,8 @@
             <div class="info-box">
                 <h2>Informazioni e Prenotazioni</h2>
                 <div class="info-details">
-                    <p><strong>Indirizzo:</strong> <a href="https://maps.google.com/?q=Via+Santa+Marta+11+20123+Milano+MI" target="_blank" style="color: #d1c7b7; text-decoration: underline;">Via Santa Marta, 11, 20123 Milano MI</a></p>
-                    <p><strong>Telefono:</strong> 02 8645 1991 (consigliata prenotazione telefonica)</p>
+                    <p><strong>Indirizzo:</strong> <a href="https://maps.google.com/?q=Via+Santa+Marta+11+20123+Milano+MI" target="_blank" style="color: var(--gold-light); text-decoration: underline;">Via Santa Marta, 11, 20123 Milano MI</a></p>
+                    <p><strong>Telefono:</strong> <a href="tel:0286451991" style="color: var(--primary-color); text-decoration: none;">02 8645 1991</a> (consigliata prenotazione telefonica)</p>
                     <p><strong>Orari:</strong> Lunedì - Sabato: 12–14:30, 19–22:30<br>Domenica: Chiuso</p>
                 </div>
                 <!-- Mini Mappa di Google Maps -->
